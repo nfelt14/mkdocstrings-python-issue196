@@ -1,0 +1,50 @@
+---
+site_name: temp
+strict: true
+use_directory_urls: true
+watch:
+  - src
+theme:
+  name: readthedocs
+  include_homepage_in_sidebar: false
+plugins:
+  - autorefs
+  - mkdocstrings:
+      enable_inventory: true
+      handlers:
+        python:  # see https://mkdocstrings.github.io/python/usage/
+          paths: [src]
+          options:
+            # General options
+            show_inheritance_diagram: true
+            show_source: false
+            # Headings options
+            heading_level: 1
+            show_root_heading: true
+            show_root_full_path: false
+            show_category_heading: false
+            # Members options
+            inherited_members: true
+            members_order: source
+            filters: ['!^_', ^__init__]
+            show_labels: true
+            # Docstrings options
+            docstring_options:
+              ignore_init_summary: true
+              trim_doctest_flags: true
+            docstring_section_style: list
+            merge_init_into_class: true
+            # Signature options
+            line_length: 100
+            show_signature_annotations: true
+            signature_crossrefs: true
+            separate_signature: true
+          import:
+            - url: https://docs.python.org/3/objects.inv
+              domains: [std, py]
+            - url: https://typing-extensions.readthedocs.io/en/stable/objects.inv
+              domains: [std, py]
+nav:
+  - index.md
+  - parent.md
+  - child.md
